@@ -14,10 +14,11 @@
 		//$res = $_GET["num"];
 		$ant = ($res - 1);
 		$prox = ($res + 1);
-		echo "<p>O número escolhido foi $res</p>";
+		echo "<p>O número escolhido foi <strong>$res</strong></p>";
 		echo "<p>O seu <i>antecessor<i> é $ant</p>";
 		echo "<p>O seu <i>sucessor<i> é $prox</p>";
 		?>
+		<button onclick="javascript:history.go(-1)">&#x2B05; Voltar</button>
 	</section>
 </body>
 </html>
