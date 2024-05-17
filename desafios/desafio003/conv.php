@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio PHP 03</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Desafio PHP 07</title>
 </head>
 <body>
-    <section>
-        <h1>Conversor de Moedas</h1>
-        <?php
-        //$wallet = 245.45;
-        $cot = 5.13;
-        $wallet = $_GET["num"] ?? 0;
-        $conv = round(($wallet / $cot), 2);
+    <?php 
+    $salario = $_POST['salario'] ?? 8560;
+    $salmin = 1412.00
+    ?>
+    <main>
+        <h1>Informe seu salário</h1>
+        <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+            <label for="salario">Salário (R$)</label>
+            <input type="number" name="salario" id="salario" step="0.01">
+        </form>
+        <p>Considerando o salário mínimo de <strong>R$1.412,00</strong></p>
+    </main>
+    <section id="resultado">
+        <h2>Resultado Final</h2>
+        <?php 
+        $_salario = $salario/$salmin;
+        $restoSalario = $salario%$salmin;
         $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
-        //echo "Seus R\$" . number_format($wallet, 2, ",", ".") . " equivalem a US\$". number_format($conv,2, ",", ".");
-        echo "<p>Seus " . numfmt_format_currency($padrao, $wallet, "BRL") . " equivalem a <strong>". numfmt_format_currency($padrao, $conv, "USD") . "<strong> </p>";
-        echo "*<p><strong>Cotação fixa de $cot</strong> informada diretamente no código</p>";
+        echo "Quem recebe um salário de ". numfmt_format_currency($padrao, $salario, "BRL") ." <strong>ganha</strong> <strong>". round($_salario, 0) ."</strong> <strong>salários mínimos</strong> + ". numfmt_format_currency($padrao, $restoSalario, "BRL");
         ?>
-        <button onclick="javascript:history.go(-1)">&#x2B05; Voltar</button>
     </section>
 </body>
 </html>
